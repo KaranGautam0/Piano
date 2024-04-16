@@ -29,6 +29,7 @@ function playsound_click(e) {
   if (audio) {
     audio.currentTime = 0;
     audio.play();
+    console.log("play");
   }
 }
 
