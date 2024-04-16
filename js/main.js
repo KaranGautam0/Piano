@@ -8,29 +8,31 @@ checkbox.addEventListener("click", () => {
   key.forEach((err) => err.classList.toggle("disabled-keys"));
 });
 
-// Play function
-function playsound(e) {
+// Play function with key
+function playsound_Kay(e) {
   let audio = document.querySelector(`audio[data-key="${e.keyCode}"]`);
   if (!audio) return; // stop the function
   audio.currentTime = 0;
   audio.play();
 }
 
-window.addEventListener("keydown", playsound);
 
+// Play function with click
+function playsound_click(e) {
+  // Check if the clicked element has the "key" class
+  if (!e.target.classList.contains("key")) return;
 
-// error inside the code
-/**
-function playsoundClick () {
-  let audios = document.querySelectorAll("audio");
+  // Find the audio element using data-key attribute
+  const keyCode = e.target.dataset.key;
+  const audio = document.querySelector(`audio[data-key="${keyCode}"]`);
 
-  // Iterate over each audio element and play it
-  audios.forEach((audio) => {
+  if (audio) {
     audio.currentTime = 0;
     audio.play();
-    console.log(audio);
-  });
+  }
 }
 
-window.addEventListener("click",playsoundClick);
- */
+window.addEventListener("keydown",  playsound_Kay);
+window.addEventListener("click", playsound_click);
+ 
+
